@@ -1,26 +1,24 @@
-package co.zip.candidate.userapi;
+package co.zip.candidate.userapi.user;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "app_user")
-public class AppUser {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDTO {
     private long id;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "email")
     private String email;
-
-    @Column(name = "monthly_salary")
     private BigDecimal monthlySalary;
-
-    @Column(name = "monthly_expenses")
     private BigDecimal monthlyExpenses;
+
+    public UserDTO() {
+    }
+
+    public UserDTO(long id, String name, String email, BigDecimal monthlySalary, BigDecimal monthlyExpenses) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.monthlySalary = monthlySalary;
+        this.monthlyExpenses = monthlyExpenses;
+    }
 
     public long getId() {
         return id;
@@ -60,16 +58,5 @@ public class AppUser {
 
     public void setMonthlyExpenses(BigDecimal monthlyExpenses) {
         this.monthlyExpenses = monthlyExpenses;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", monthlySalary=" + monthlySalary +
-                ", monthlyExpenses=" + monthlyExpenses +
-                '}';
     }
 }

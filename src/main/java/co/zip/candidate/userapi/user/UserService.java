@@ -1,5 +1,6 @@
-package co.zip.candidate.userapi;
+package co.zip.candidate.userapi.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,21 +9,16 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
 
+    @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public String getUser() {
-        return "User Frankie here";
-    }
-
-    public List<AppUser> getAll(){
+    public List<User> getUsers(){
         return userRepository.findAll();
     }
 
-    public AppUser createUser(){
-        AppUser myUser = new AppUser();
-        myUser.setName("Frank");
-        return userRepository.save(myUser);
+    public User createUser(User user){
+        return userRepository.save(user);
     }
 }
