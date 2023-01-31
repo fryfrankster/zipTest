@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "api/v1/user")
@@ -22,8 +23,9 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getUsers() {
-        return ResponseEntity.ok(userService.getUsers());
+    public ResponseEntity<List<UserDTO>> getAllUsers() {
+        List<UserDTO> users = userService.getAllUsers().stream().map(userMapper::toDTO).collect(Collectors.toList());
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping("/{id}")

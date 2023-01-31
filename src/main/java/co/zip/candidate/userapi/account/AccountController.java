@@ -1,12 +1,14 @@
 package co.zip.candidate.userapi.account;
 
 import co.zip.candidate.userapi.user.User;
+import co.zip.candidate.userapi.user.UserDTO;
 import co.zip.candidate.userapi.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "api/v1/account")
@@ -24,8 +26,10 @@ public class AccountController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Account>> getAllAccounts() {
-        return ResponseEntity.ok(accountService.getAllAccounts());
+    public ResponseEntity<List<AccountDTO>> getAllAccounts() {
+        List<AccountDTO> accounts = accountService.getAllAccounts().stream().map(accountMapper::toDTO)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(accounts);
     }
 
     @PostMapping
