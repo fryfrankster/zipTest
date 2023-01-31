@@ -2,9 +2,7 @@ package co.zip.candidate.userapi.account;
 
 import co.zip.candidate.userapi.exceptions.AccountPrerequisiteException;
 import co.zip.candidate.userapi.exceptions.DuplicateException;
-import co.zip.candidate.userapi.exceptions.ResourceNotFoundException;
 import co.zip.candidate.userapi.user.User;
-import co.zip.candidate.userapi.user.UserRepository;
 import co.zip.candidate.userapi.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

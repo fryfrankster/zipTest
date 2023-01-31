@@ -1,7 +1,5 @@
 package co.zip.candidate.userapi.account;
 
-import co.zip.candidate.userapi.user.User;
-import co.zip.candidate.userapi.user.UserDTO;
 import co.zip.candidate.userapi.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
