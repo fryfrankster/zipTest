@@ -1,5 +1,7 @@
 package co.zip.candidate.userapi.user;
 
+import co.zip.candidate.userapi.account.Account;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -21,6 +23,9 @@ public class User {
 
     @Column(name = "monthly_expenses", nullable = false)
     private BigDecimal monthlyExpenses;
+
+    @OneToOne(mappedBy = "user")
+    private Account account;
 
     public long getId() {
         return id;
@@ -61,6 +66,8 @@ public class User {
     public void setMonthlyExpenses(BigDecimal monthlyExpenses) {
         this.monthlyExpenses = monthlyExpenses;
     }
+
+    public Account getAccount() { return account; }
 
     @Override
     public String toString() {

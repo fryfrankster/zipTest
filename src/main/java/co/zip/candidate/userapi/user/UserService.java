@@ -1,12 +1,10 @@
 package co.zip.candidate.userapi.user;
 
-import co.zip.candidate.userapi.exceptions.DuplicateFieldException;
+import co.zip.candidate.userapi.exceptions.DuplicateException;
 import co.zip.candidate.userapi.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
-import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 @Service
@@ -28,7 +26,7 @@ public class UserService {
 
     public User createUser(User user) {
         if (userRepository.existsByEmail(user.getEmail())) {
-            throw new DuplicateFieldException("email", user.getEmail(), "Could not create user");
+            throw new DuplicateException("email", user.getEmail(), "Could not create user");
         }
         return userRepository.save(user);
     }

@@ -15,13 +15,11 @@ import java.util.stream.Collectors;
 public class AccountController {
 
     private final AccountService accountService;
-    private final UserService userService;
     private final AccountMapper accountMapper;
 
     @Autowired
     public AccountController(AccountService accountService, UserService userService, AccountMapper accountMapper) {
         this.accountService = accountService;
-        this.userService = userService;
         this.accountMapper = accountMapper;
     }
 
@@ -34,8 +32,7 @@ public class AccountController {
 
     @PostMapping
     public ResponseEntity<AccountDTO> createAccount(@RequestBody AccountDTO accountDTO) {
-        User user = userService.getUserById(accountDTO.getUserId());
-        Account account = accountService.createAccount(accountMapper.createFromDTO(user));
+        Account account = accountService.createAccount(accountDTO.getUserId());
         return ResponseEntity.ok(accountMapper.toDTO(account));
     }
 }

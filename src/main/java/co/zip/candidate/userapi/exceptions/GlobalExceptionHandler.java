@@ -11,7 +11,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,9 +44,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return buildErrorResponseEntity(errorResponse);
     }
 
-    @ExceptionHandler(DuplicateFieldException.class)
+    @ExceptionHandler(DuplicateException.class)
     public ResponseEntity<Object> handleDuplicateFieldException(
-            DuplicateFieldException exception
+            DuplicateException exception
     ) {
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage());
         return buildErrorResponseEntity(errorResponse);
