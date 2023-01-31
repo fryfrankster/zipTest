@@ -1,7 +1,6 @@
 package co.zip.candidate.userapi.user;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
 @Entity
