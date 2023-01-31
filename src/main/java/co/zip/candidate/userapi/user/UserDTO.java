@@ -1,12 +1,29 @@
 package co.zip.candidate.userapi.user;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 public class UserDTO {
     private long id;
+
+    @NotNull
+    @NotBlank
     private String name;
+
+    @Email
+    @NotNull
+    @NotBlank
     private String email;
+
+    @NotNull
+    @Positive
     private BigDecimal monthlySalary;
+
+    @NotNull
+    @Positive
     private BigDecimal monthlyExpenses;
 
     public UserDTO() {

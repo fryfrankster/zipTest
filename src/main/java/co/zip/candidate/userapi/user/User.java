@@ -14,19 +14,12 @@ public class User {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Email
-    @NotNull
-    @NotBlank
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @NotNull
-    @Positive
     @Column(name = "monthly_salary", nullable = false)
     private BigDecimal monthlySalary;
 
-    @NotNull
-    @Positive
     @Column(name = "monthly_expenses", nullable = false)
     private BigDecimal monthlyExpenses;
 
