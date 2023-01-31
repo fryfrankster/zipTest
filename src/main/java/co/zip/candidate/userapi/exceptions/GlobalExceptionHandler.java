@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,12 +45,20 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return buildErrorResponseEntity(errorResponse);
     }
 
+    @ExceptionHandler(DuplicateFieldException.class)
+    public ResponseEntity<Object> handleDuplicateFieldException(
+            DuplicateFieldException exception
+    ) {
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage());
+        return buildErrorResponseEntity(errorResponse);
+    }
+
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<Object> handleDataIntegrityViolationException(
             HttpServletRequest request,
             DataIntegrityViolationException exception
     ) {
-        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND);
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.BAD_REQUEST);
         errorResponse.setMessage("The row for address is non-existent" + request.getRequestURI());
         return buildErrorResponseEntity(errorResponse);
     }
