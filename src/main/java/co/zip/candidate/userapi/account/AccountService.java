@@ -30,7 +30,7 @@ public class AccountService {
         User user = userService.getUserById(userId);
         Account existingAccount = user.getAccount();
         if(existingAccount != null){
-            throw new DuplicateException("accountId", "", "User with ID " + userId + " already has an account");
+            throw new DuplicateException("accountId", "User with ID " + userId + " already has an account");
         }
         if (!hasEnoughCredit(user)) {
             throw new AccountPrerequisiteException("User has insufficient credit to create an account: (monthly_salary - monthly_expenses) >= 1000");
